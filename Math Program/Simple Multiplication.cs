@@ -1,7 +1,7 @@
 using System;
 //using System.Threading;
 
-namespace Math_Program
+namespace Math_Program  
 {
     class User
     {
