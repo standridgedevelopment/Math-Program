@@ -137,7 +137,7 @@ namespace Math_Program
             switch (cDifficulty)
             {
                 case 1:
-                    num01 = numberGenerator.Next(1, 13);
+                    num01 = numberGenerator.Next(1, 133);
                     num02 = numberGenerator.Next(1, 13);
                     break;
                 case 2:
