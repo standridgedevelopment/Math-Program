@@ -1,4 +1,7 @@
+using Microsoft.VisualBasic;
 using System;
+using System.Security.Cryptography;
+using System.Xml.Schema;
 //using System.Threading;
 
 namespace Math_Program  
@@ -207,6 +210,10 @@ namespace Math_Program
                 Console.ReadKey();
                 Console.Clear();
             }
+            else if (score >= 90)
+            {
+                Console.WriteLine("You've got this down! Try a harder difficulty.\nPress any key to return to the main menu");
+            }
             else
             {
                 Console.WriteLine("Keep trying! Go for 90%!\nPress any key to return to the main menu");
@@ -215,52 +222,52 @@ namespace Math_Program
             }
         }
 
-        //Addition Module
+        //Subtracion Module
         public void subtraction()
-        {
-
-            Console.WriteLine("Alright! Time for some subtraction problems!\nYou've chosen " + questions + " problems.\nPress any key to start!");
-            Console.ReadKey();
-            Console.Clear();
-
-            double currentQuestion = 1;
-            double correctAnswers = 0;
-
-            while (currentQuestion <= questions)
             {
-                set_difficulty(out num01, out num02);
-                int total = num01 - num02;
-                Console.WriteLine("Question " + currentQuestion + " of " + questions + ":\n");
-                Console.WriteLine("What is " + num01 + " - " + num02 + "?");
-                int answer = Convert.ToInt32(Console.ReadLine());
-                if (answer == total)
+
+                Console.WriteLine("Alright! Time for some subtraction problems!\nYou've chosen " + questions + " problems.\nPress any key to start!");
+                Console.ReadKey();
+                Console.Clear();
+
+                double currentQuestion = 1;
+                double correctAnswers = 0;
+
+                while (currentQuestion <= questions)
                 {
-                    correctAnswers += 1;
-                    Console.WriteLine("\nCorrect! You've gotten " + correctAnswers + " of " + currentQuestion + " correct so far.");
-                    Console.WriteLine("\nPress any key for next question");
-                    currentQuestion += 1;
-                    Console.ReadKey();
-                    Console.Clear();
+                    set_difficulty(out num01, out num02);
+                    int total = num01 - num02;
+                    Console.WriteLine("Question " + currentQuestion + " of " + questions + ":\n");
+                    Console.WriteLine("What is " + num01 + " - " + num02 + "?");
+                    int answer = Convert.ToInt32(Console.ReadLine());
+                    if (answer == total)
+                    {
+                        correctAnswers += 1;
+                        Console.WriteLine("\nCorrect! You've gotten " + correctAnswers + " of " + currentQuestion + " correct so far.");
+                        Console.WriteLine("\nPress any key for next question");
+                        currentQuestion += 1;
+                        Console.ReadKey();
+                        Console.Clear();
+                    }
+                    if (answer != total)
+                    {
+                        Console.WriteLine("\nIncorrect. You've gotten " + correctAnswers + " of " + currentQuestion + " correct so far.");
+                        Console.WriteLine("\nPress any key for the next question.");
+                        currentQuestion += 1;
+                        Console.ReadKey();
+                        Console.Clear();
+                    }
                 }
-                if (answer != total)
-                {
-                    Console.WriteLine("\nIncorrect. You've gotten " + correctAnswers + " of " + currentQuestion + " correct so far.");
-                    Console.WriteLine("\nPress any key for the next question.");
-                    currentQuestion += 1;
-                    Console.ReadKey();
-                    Console.Clear();
-                }
-            }
-            double score = (correctAnswers / questions) * 100;
-            Console.WriteLine("You got " + score + "%");
-            if (score >= 90 && player.additionDifficulty == 1 && cDifficulty == 1)
+                double score = (correctAnswers / questions) * 100;
+                Console.WriteLine("You got " + score + "%");
+            if (score >= 90 && player.subtractionDifficulty == 1 && cDifficulty == 1)
             {
                 player.subtractionDifficulty += 1;
                 Console.WriteLine("You're amazing! This is obviously too easy.\n\nIntermediate difficulty unlocked!\nPress any key to return to the main menu");
                 Console.ReadKey();
                 Console.Clear();
             }
-            else if (score >= 90 && player.additionDifficulty == 2 && cDifficulty == 2)
+            else if (score >= 90 && player.subtractionDifficulty == 2 && cDifficulty == 2)
             {
                 player.subtractionDifficulty += 1;
                 Console.WriteLine("Incredible! Time for something even more difficult!\n\nAdvanced difficulty unlocked!\nPress any key to return to the main menu");
@@ -273,6 +280,254 @@ namespace Math_Program
                 Console.ReadKey();
                 Console.Clear();
             }
+            else if (score >= 90)
+            {
+                Console.WriteLine("You've got this down! Try a harder difficulty.\nPress any key to return to the main menu");
+            }
+            else
+            {
+                Console.WriteLine("Keep trying! Go for 90%!\nPress any key to return to the main menu");
+                Console.ReadKey();
+                Console.Clear();
+            }
+                }
+                // Multiplication
+                public void multiplication()
+                {
+
+                    Console.WriteLine("Alright! Time for some multiplications problems!\nYou've chosen " + questions + " problems.\nPress any key to start!");
+                    Console.ReadKey();
+                    Console.Clear();
+
+                    double currentQuestion = 1;
+                    double correctAnswers = 0;
+
+                    while (currentQuestion <= questions)
+                    {
+                        set_difficulty(out num01, out num02);
+                        int total = num01 * num02;
+                        Console.WriteLine("Question " + currentQuestion + " of " + questions + ":\n");
+                        Console.WriteLine("What is " + num01 + " x " + num02 + "?");
+                        int answer = Convert.ToInt32(Console.ReadLine());
+                        if (answer == total)
+                        {
+                            correctAnswers += 1;
+                            Console.WriteLine("\nCorrect! You've gotten " + correctAnswers + " of " + currentQuestion + " correct so far.");
+                            Console.WriteLine("\nPress any key for next question");
+                            currentQuestion += 1;
+                            Console.ReadKey();
+                            Console.Clear();
+                        }
+                        if (answer != total)
+                        {
+                            Console.WriteLine("\nIncorrect. You've gotten " + correctAnswers + " of " + currentQuestion + " correct so far.");
+                            Console.WriteLine("\nPress any key for the next question.");
+                            currentQuestion += 1;
+                            Console.ReadKey();
+                            Console.Clear();
+                        }
+                    }
+                    double score = (correctAnswers / questions) * 100;
+                    Console.WriteLine("You got " + score + "%");
+                    if (score >= 90 && player.multiplicationDiffculty == 1 && cDifficulty == 1)
+                    {
+                        player.multiplicationDiffculty += 1;
+                        Console.WriteLine("You're amazing! This is obviously too easy.\n\nIntermediate difficulty unlocked!\nPress any key to return to the main menu");
+                        Console.ReadKey();
+                        Console.Clear();
+                    }
+                    else if (score >= 90 && player.multiplicationDiffculty == 2 && cDifficulty == 2)
+                    {
+                        player.multiplicationDiffculty += 1;
+                        Console.WriteLine("Incredible! Time for something even more difficult!\n\nAdvanced difficulty unlocked!\nPress any key to return to the main menu");
+                        Console.ReadKey();
+                        Console.Clear();
+                    }
+                    else if (score >= 90 && player.multiplicationDiffculty == 3 && cDifficulty == 3)
+                    {
+                        Console.WriteLine("You are a master of multiplication! Try another type of math!\nPress any key to return to the main menu");
+                        Console.ReadKey();
+                        Console.Clear();
+                    }
+                    else if (score >= 90)
+                    {
+                        Console.WriteLine("You've got this down! Try a harder difficulty.\nPress any key to return to the main menu");
+                    }
+                    else
+                    {
+                        Console.WriteLine("Keep trying! Go for 90%!\nPress any key to return to the main menu");
+                        Console.ReadKey();
+                        Console.Clear();
+                    }
+                }
+                // Division
+                public void divison()
+                {
+
+                    Console.WriteLine("Alright! Time for some division problems!\nYou've chosen " + questions + " problems.\nPress any key to start!");
+                    Console.ReadKey();
+                    Console.Clear();
+
+                    double currentQuestion = 1;
+                    double correctAnswers = 0;
+
+                    while (currentQuestion <= questions)
+                    {
+                        set_difficulty(out num01, out num02);
+                            while ( num01 % num02!= 0 || num02 == 1)
+                                {
+                                set_difficulty(out num01, out num02);
+                                }
+                        double total = num01 / num02;
+                        Console.WriteLine("Question " + currentQuestion + " of " + questions + ":\n");
+                        Console.WriteLine("What is " + num01 + " / " + num02 + "?");
+                        double answer = Convert.ToDouble(Console.ReadLine());
+                        if (answer == total)
+                        {
+                            correctAnswers += 1;
+                            Console.WriteLine("\nCorrect! You've gotten " + correctAnswers + " of " + currentQuestion + " correct so far.");
+                            Console.WriteLine("\nPress any key for next question");
+                            currentQuestion += 1;
+                            Console.ReadKey();
+                            Console.Clear();
+                        }
+                        if (answer != total)
+                        {
+                            Console.WriteLine("\nIncorrect. You've gotten " + correctAnswers + " of " + currentQuestion + " correct so far.");
+                            Console.WriteLine("\nPress any key for the next question.");
+                            currentQuestion += 1;
+                            Console.ReadKey();
+                            Console.Clear();
+                        }
+                    }
+                    double score = (correctAnswers / questions) * 100;
+                    Console.WriteLine("You got " + score + "%");
+                    if (score >= 90 && player.divisionDifficulty == 1 && cDifficulty == 1)
+                    {
+                        player.divisionDifficulty += 1;
+                        Console.WriteLine("You're amazing! This is obviously too easy.\n\nIntermediate difficulty unlocked!\nPress any key to return to the main menu");
+                        Console.ReadKey();
+                        Console.Clear();
+                    }
+                    else if (score >= 90 && player.divisionDifficulty == 2 && cDifficulty == 2)
+                    {
+                        player.divisionDifficulty += 1;
+                        Console.WriteLine("Incredible! Time for something even more difficult!\n\nAdvanced difficulty unlocked!\nPress any key to return to the main menu");
+                        Console.ReadKey();
+                        Console.Clear();
+                    }
+                    else if (score >= 90 && player.divisionDifficulty == 3 && cDifficulty == 3)
+                    {
+                        Console.WriteLine("You are a master of division! Try another type of math!\nPress any key to return to the main menu");
+                        Console.ReadKey();
+                        Console.Clear();
+                    }
+                    else if (score >= 90)
+                    {
+                        Console.WriteLine("You've got this down! Try a harder difficulty.\nPress any key to return to the main menu");
+                    }
+                    else
+                    {
+                        Console.WriteLine("Keep trying! Go for 90%!\nPress any key to return to the main menu");
+                        Console.ReadKey();
+                        Console.Clear();
+                    }
+                }
+        // Combined
+        public void combined()
+        {
+
+            Console.WriteLine("Alright! Time for a combination of problems!\nYou've chosen " + questions + " problems.\nPress any key to start!");
+            Console.ReadKey();
+            Console.Clear();
+
+            double currentQuestion = 1;
+            double correctAnswers = 0;
+
+            while (currentQuestion <= questions)
+            {
+                Random combine = new Random();
+                double cType = combine.Next(1, 5);
+                set_difficulty(out num01, out num02);
+                switch (cType)
+                {
+                    case 1:
+                        double aTotal = num01 + num02;
+                        Console.WriteLine("Question " + currentQuestion + " of " + questions + ":\n");
+                        Console.WriteLine("What is " + num01 + " + " + num02 + "?");
+                        cType = aTotal;
+                        break;
+
+                    case 2:
+                        double sTotal = num01 - num02;
+                        Console.WriteLine("Question " + currentQuestion + " of " + questions + ":\n");
+                        Console.WriteLine("What is " + num01 + " - " + num02 + "?");
+                        cType = sTotal;
+                        break;
+
+                    case 3:
+                        double mTotal = num01 * num02;
+                        Console.WriteLine("Question " + currentQuestion + " of " + questions + ":\n");
+                        Console.WriteLine("What is " + num01 + " x " + num02 + "?");
+                        cType = mTotal;
+                        break;
+
+                    case 4:
+                        while (num01 % num02 != 0 || num02 == 1)
+                        {
+                            set_difficulty(out num01, out num02);
+                        }
+                        double dTotal = num01 / num02;
+                        Console.WriteLine("Question " + currentQuestion + " of " + questions + ":\n");
+                        Console.WriteLine("What is " + num01 + " / " + num02 + "?");
+                        cType = dTotal;
+                        break;
+                }
+                double answer = Convert.ToDouble(Console.ReadLine());
+                if (answer == cType)
+                {
+                    correctAnswers += 1;
+                    Console.WriteLine("\nCorrect! You've gotten " + correctAnswers + " of " + currentQuestion + " correct so far.");
+                    Console.WriteLine("\nPress any key for next question");
+                    currentQuestion += 1;
+                    Console.ReadKey();
+                    Console.Clear();
+                }
+                if (answer != cType)
+                {
+                    Console.WriteLine("\nIncorrect. You've gotten " + correctAnswers + " of " + currentQuestion + " correct so far.");
+                    Console.WriteLine("\nPress any key for the next question.");
+                    currentQuestion += 1;
+                    Console.ReadKey();
+                    Console.Clear();
+                }
+            }
+            double score = (correctAnswers / questions) * 100;
+            Console.WriteLine("You got " + score + "%");
+            if (score >= 90 && player.combinedDifficulty == 1 && cDifficulty == 1)
+            {
+                player.combinedDifficulty += 1;
+                Console.WriteLine("You're amazing! This is obviously too easy.\n\nIntermediate difficulty unlocked!\nPress any key to return to the main menu");
+                Console.ReadKey();
+                Console.Clear();
+            }
+            else if (score >= 90 && player.combinedDifficulty == 2 && cDifficulty == 2)
+            {
+                player.combinedDifficulty += 1;
+                Console.WriteLine("Incredible! Time for something even more difficult!\n\nAdvanced difficulty unlocked!\nPress any key to return to the main menu");
+                Console.ReadKey();
+                Console.Clear();
+            }
+            else if (score >= 90 && player.combinedDifficulty == 3 && cDifficulty == 3)
+            {
+                Console.WriteLine("You are a master of all math!\nPress any key to return to the main menu");
+                Console.ReadKey();
+                Console.Clear();
+            }
+            else if (score >= 90)
+            {
+                Console.WriteLine("You've got this down! Try a harder difficulty.\nPress any key to return to the main menu");
+            }
             else
             {
                 Console.WriteLine("Keep trying! Go for 90%!\nPress any key to return to the main menu");
@@ -280,6 +535,7 @@ namespace Math_Program
                 Console.Clear();
             }
         }
+           
         class Program
         {
             static void Main(string[] args)
@@ -327,6 +583,15 @@ namespace Math_Program
                             break;
                         case 2:
                             newGame.subtraction();
+                            break;
+                        case 3:
+                            newGame.multiplication();
+                            break;
+                        case 4:
+                            newGame.divison();
+                            break;
+                        case 5:
+                            newGame.combined();
                             break;
                     }
                 }
