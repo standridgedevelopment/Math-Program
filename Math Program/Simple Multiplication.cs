@@ -137,16 +137,16 @@ namespace Math_Program
             switch (cDifficulty)
             {
                 case 1:
-                    num01 = numberGenerator.Next(7, 13);
-                    num02 = numberGenerator.Next(1, 7);
+                    num01 = numberGenerator.Next(1, 13);
+                    num02 = numberGenerator.Next(1, 13);
                     break;
                 case 2:
-                    num01 = numberGenerator.Next(51, 100);
-                    num02 = numberGenerator.Next(1, 51);
+                    num01 = numberGenerator.Next(1, 100);
+                    num02 = numberGenerator.Next(1, 100);
                     break;
                 case 3:
-                    num01 = numberGenerator.Next(501, 1000);
-                    num02 = numberGenerator.Next(1, 501);
+                    num01 = numberGenerator.Next(1, 1000);
+                    num02 = numberGenerator.Next(1, 1000);
                     break;
 
             }
@@ -374,7 +374,7 @@ namespace Math_Program
                     while (currentQuestion <= questions)
                     {
                         set_difficulty(out num01, out num02);
-                            while ( num01 % num02!= 0 || num02 == 1)
+                            while ( num01 % num02!= 0 || num02 == 1 || num01 < num02 | num01 / num02 == 2)
                                 {
                                 set_difficulty(out num01, out num02);
                                 }
@@ -473,7 +473,7 @@ namespace Math_Program
                         break;
 
                     case 4:
-                        while (num01 % num02 != 0 || num02 == 1)
+                        while (num01 % num02 != 0 || num02 == 1 || num01 < num02 | num01 / num02 == 2)
                         {
                             set_difficulty(out num01, out num02);
                         }
