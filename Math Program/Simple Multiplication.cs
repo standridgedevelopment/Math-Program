@@ -22,7 +22,8 @@ namespace Math_Program
     class Game
     {
         User player = new User();
-        public int pType; //type of problems
+        public string choose_pType // string to type
+        public int pType = 0; //type of problems
         public int questions;
         public int cDifficulty; //chosen difficulty
         public int difficulty;
@@ -40,13 +41,14 @@ namespace Math_Program
             //5. Combination
             Console.WriteLine("Please select to type of problem you'd like to solve\n");
             Console.WriteLine("1. Addition \n2. Subtraction \n3. Multiplication \n4. Divsion \n5. Combination\n");
-            pType = Convert.ToInt32(Console.ReadLine());
+            choose_pType = Console.ReadLine();
             while (pType > 5)
             {
+                if (choose_pType.Contains("1" || "addition")){pType =1};
                 Console.Clear();
                 Console.WriteLine("Please make another selection");
                 Console.WriteLine("\n1. Addition \n2. Subtraction \n3. Multiplication \n4. Divsion \n5. Combination\n");
-                pType = Convert.ToInt32(Console.ReadLine());
+                choose_pType = Console.ReadLine();
 
             }
             return pType;
