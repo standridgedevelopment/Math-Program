@@ -22,8 +22,8 @@ namespace Math_Program
     class Game
     {
         User player = new User();
-        public string choose_pType // string to type
-        public int pType = 0; //type of problems
+        public string choose_pType; // string to type
+        public int pType ; //type of problems
         public int questions;
         public int cDifficulty; //chosen difficulty
         public int difficulty;
@@ -31,7 +31,7 @@ namespace Math_Program
         int num02;
 
         //Problem Type Selection
-        public int problemType()
+        public void problemType()
         {
             //Math Selection
             //1. Addition
@@ -42,16 +42,29 @@ namespace Math_Program
             Console.WriteLine("Please select to type of problem you'd like to solve\n");
             Console.WriteLine("1. Addition \n2. Subtraction \n3. Multiplication \n4. Divsion \n5. Combination\n");
             choose_pType = Console.ReadLine();
-            while (pType > 5)
+                choose_type:
+            try
             {
-                if (choose_pType.Contains("1" || "addition")){pType =1};
-                Console.Clear();
-                Console.WriteLine("Please make another selection");
-                Console.WriteLine("\n1. Addition \n2. Subtraction \n3. Multiplication \n4. Divsion \n5. Combination\n");
-                choose_pType = Console.ReadLine();
-
+                pType = Convert.ToInt32(choose_pType);
             }
-            return pType;
+            catch (FormatException)
+            {
+                if (choose_pType.Contains("addition", StringComparison.CurrentCultureIgnoreCase)) pType = 1;
+                else if (choose_pType.Contains("subtraction", StringComparison.CurrentCultureIgnoreCase)) pType = 2;
+                else if (choose_pType.Contains("multiplication", StringComparison.CurrentCultureIgnoreCase)) pType = 3;
+                else if (choose_pType.Contains("divison", StringComparison.CurrentCultureIgnoreCase)) pType = 4;
+                else if (choose_pType.Contains("combination", StringComparison.CurrentCultureIgnoreCase)) pType = 5;
+                
+            }
+            if (pType > 5)
+            {
+                    Console.Clear();
+                    Console.WriteLine("Please make another selection");
+                    Console.WriteLine("\n1. Addition \n2. Subtraction \n3. Multiplication \n4. Divsion \n5. Combination\n");
+                    choose_pType = Console.ReadLine();
+                    goto choose_type;
+            }
+
         }
 
         //How Many Questions
@@ -92,12 +105,22 @@ namespace Math_Program
             }
             Console.Clear();
             Console.WriteLine("Please select your difficulty");
-            switch (difficulty)
+            /*switch (difficulty)
             {
                 case 1:
+                    try_again:
                     Console.WriteLine("\n1. Beginner");
-                    cDifficulty = Convert.ToInt32(Console.ReadLine());
-                    while (cDifficulty < 0 || cDifficulty > 1)
+                    try
+                    {
+                        cDifficulty = Convert.ToInt32(Console.ReadLine());
+                    }
+                    catch (FormatException)
+                    {
+                        Console.Clear();
+                        Console.WriteLine("That is not a number.\nTry again.");
+                        goto try_again;
+                    }
+                        while (cDifficulty < 0 || cDifficulty > 1)
                     {
                         Console.Clear();
                         Console.WriteLine("Please make another selection.");
@@ -126,8 +149,48 @@ namespace Math_Program
                         Console.WriteLine("\n1. Beginner \n2. Intermediate \n3. Advanced");
                         cDifficulty = Convert.ToInt32(Console.ReadLine());
                     }
+                    break;*/
+            try_again:
+            switch (difficulty)
+            {
+               case 1:
+                   Console.WriteLine("\n1. Beginner");
                     break;
+                   
+               case 2:
+                       Console.WriteLine("\n1. Beginner \n2. Intermediate");
+                   break;
+               case 3:
+                   Console.WriteLine("\n1. Beginner \n2. Intermidiate \n3. Advanced");
+                   break;
+
             }
+            
+            string choose_cDifficulty = Console.ReadLine();
+            try
+            {
+                cDifficulty = Convert.ToInt32(choose_cDifficulty);
+            }
+            catch (FormatException)
+            {
+                if (choose_cDifficulty.Contains("beginner", StringComparison.CurrentCultureIgnoreCase)) cDifficulty = 1;
+                else if (choose_cDifficulty.Contains("intermediate", StringComparison.CurrentCultureIgnoreCase)) cDifficulty = 2;
+                else if (choose_cDifficulty.Contains("advanced", StringComparison.CurrentCultureIgnoreCase)) cDifficulty = 3;
+                else
+                {
+                    Console.Clear();
+                    Console.WriteLine("That is not an available option.");
+                    goto try_again;
+                }
+            }
+            if (cDifficulty > difficulty)
+            {
+                Console.Clear();
+                Console.WriteLine("That is not an available option");
+                goto try_again;
+            }
+
+
             return cDifficulty;
         }
         // Set Difficulty
@@ -139,7 +202,7 @@ namespace Math_Program
             switch (cDifficulty)
             {
                 case 1:
-                    num01 = numberGenerator.Next(1, 133);
+                    num01 = numberGenerator.Next(1, 13);
                     num02 = numberGenerator.Next(1, 13);
                     break;
                 case 2:
@@ -543,7 +606,6 @@ namespace Math_Program
             static void Main(string[] args)
             {
                 User player = new User();
-                int pType;
                 int questions; // amuont of questions
                 int choice = 1;
                 //Introduction
@@ -565,7 +627,16 @@ namespace Math_Program
                 {
                     Console.WriteLine("Main Menu");
                     Console.WriteLine("1. Play Game\n2. Exit");
-                    choice = Convert.ToInt32(Console.ReadLine());
+                    string choose = Console.ReadLine();
+                    try
+                    {
+                        choice = Convert.ToInt32(choose);
+                    }
+                    catch (FormatException)
+                    {
+                        if (choose.Contains("play game", StringComparison.CurrentCultureIgnoreCase)) choice = 1;
+                        else if (choose.Contains("exit", StringComparison.CurrentCultureIgnoreCase)) choice = 2;
+                    }
                     Console.Clear();
                     switch (choice)
                     {
@@ -573,12 +644,14 @@ namespace Math_Program
                             break;
                         case 2:
                             return;
+                        default:
+                            break;
                     }
-                    pType = newGame.problemType();
+                    newGame.problemType();
                     newGame.Difficulty();
                     questions = newGame.how_many_questions();
 
-                    switch (pType)
+                    switch (newGame.pType)
                     {
                         case 1:
                             newGame.addition();
