@@ -10,7 +10,7 @@ namespace Math_Program
     {
         public string name;
         // difficulties available
-        public int additionDifficulty = 1;
+        public int additionDifficulty = 2;
         public int subtractionDifficulty = 1;
         public int multiplicationDiffculty = 1;
         public int divisionDifficulty = 1;
