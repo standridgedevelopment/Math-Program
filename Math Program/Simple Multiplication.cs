@@ -232,8 +232,8 @@ namespace Math_Program
             {
                 set_difficulty(out num01, out num02);
                 int total = num01 + num02;
-                Console.WriteLine("Question " + currentQuestion + " of " + questions + ":\n");
-                Console.WriteLine("What is " + num01 + " + " + num02 + "?");
+                Console.WriteLine($"Question {currentQuestion} of {questions}:\n");
+                Console.WriteLine($"What is {num01} + {num02}?");
                 int answer = Convert.ToInt32(Console.ReadLine());
                 if (answer == total)
                 {
@@ -439,7 +439,7 @@ namespace Math_Program
                     while (currentQuestion <= questions)
                     {
                         set_difficulty(out num01, out num02);
-                            while ( num01 % num02!= 0 || num02 == 1 || num01 < num02 | num01 / num02 == 2)
+                            while ( num01 % num02!= 0 || num02 == 1 || num01 < num02 || num01 / num02 == 2)
                                 {
                                 set_difficulty(out num01, out num02);
                                 }
